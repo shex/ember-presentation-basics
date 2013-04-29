@@ -1,0 +1,12 @@
+* The app comprises a header.
+	* title        - The caption "Ember Mail" is on the left.
+	* user 		   - The user name is on the right.
+	* emails-count - Emails count, and unread emails count
+
+* There are two pages
+	* Page "emails"
+		* emails 		  - Shows the list of emails (email-summary)
+		* noEmails        - When there's no emails, show "Sorry, nobody loves you"
+		* highlight   	  - Unread emails are highlighted.
+		* previewed-email - Clicking on an email shows previews it, and marks as read
+	* Page "about"
