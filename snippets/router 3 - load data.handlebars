@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><Ember></Ember> Ember Mail</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<script src="js/libs/jquery-1.9.1.js"></script>
+<script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
+<script src="js/libs/ember-1.0.0-rc.2.js"></script>
+
+<script type="text/javascript">
+    App = Ember.Application.create();
+
+    // some pre written emails data
+    App.set('emails', [{
+        from: 'email1@gmail.com',
+        title: 'free viagra',
+        description: 'well, it is not really free'
+    }]);
+
+    App.Router.map(function() {
+        this.route("about", { path: "/about" });
+        this.route("emails", { path: "/mail" });
+    });
+
+    App.EmailsRoute = Ember.Route.extend({
+        model: function () {
+            return App.get('emails');
+        }
+    });
+
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="application">
+    <h2>hello embers! </h2>
+    {{outlet}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="index">
+    this is the index page
+</script>
+
+<script type="text/x-handlebars" data-template-name="about">
+    this is the about page
+</script>
+
+<script type="text/x-handlebars" data-template-name="emails">
+    <div>
+        this is the emails page
+    </div>
+    {{#each model}}
+        {{this.title}}
+    {{/each}}
+</script>
+
+</body>
+</html>

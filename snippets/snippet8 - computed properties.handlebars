@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    App = Ember.Application.create();
+
+    var User = Ember.Object.extend({
+        name: function () {
+            return this.get('lastName') + ', ' + this.get('firstName');
+        }.property('firstName', 'lastName')
+    });
+
+    App.set('user', User.create({
+        firstName: 'Moran',
+        lastName: 'Fine'
+    }));
+
+    App.set('emails', []);
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+    <h2>hello {{App.user.name}}! </h2>
+
+    <ul class="emails">
+        {{#each App.emails}}
+            <li class="email-summary">
+                <span class="title">
+                    {{this.title}}
+                </span>
+                <span class="sentAt">
+                    {{date this.sentAt}}
+                </span>
+                <div class="from">
+                    {{this.from}}
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+
+</script>
+

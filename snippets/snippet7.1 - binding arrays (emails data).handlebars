@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    App = Ember.Application.create();
+    App.set('user', Ember.Object.create({
+        firstName: 'moshe'
+    }));
+
+    // some pre written emails data
+    App.set('emails', [
+        {
+            from: 'email1@gmail.com',
+            title: 'free viagra',
+            description: 'well, it is not really free',
+            isRead: true,
+            sentAt: new Date()
+        },
+        {
+            from: 'email2@gmail.com',
+            title: 'title 2',
+            description: 'description 2',
+            isRead: false,
+            sentAt: new Date()
+        },
+        {
+            from: 'email4@gmail.com',
+            title: 'title 3',
+            description: 'description 3',
+            isRead: true,
+            sentAt: new Date()
+        }
+    ]);
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+    <h2>hello {{App.user.firstName}}! </h2>
+
+    <span class="emails">
+        {{App.emails.length}} emails
+    </span>
+
+</script>
+

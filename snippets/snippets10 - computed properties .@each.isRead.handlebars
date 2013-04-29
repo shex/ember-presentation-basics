@@ -1,0 +1,89 @@
+<script type="text/javascript">
+    App = Ember.Application.create();
+
+    var User = Ember.Object.extend({
+        name: function () {
+            return this.get('firstName') + ' ' + this.get('lastName');
+        }.property('firstName', 'lastName'),
+        emails: [],
+
+        noEmails: function () {
+            return this.get('emails.length') === 0;
+        }.property('emails.@each'),
+
+        unreadCount: function () {
+            return this.get('emails').filterProperty('isRead', false).length;
+        }.property('emails.@each.isRead')
+    });
+
+    var newUser = User.create({
+        firstName: 'Moran',
+        lastName: 'Fine'
+    });
+    App.set('user', newUser);
+
+    newUser.set('emails', [
+        Ember.Object.create({
+            from: 'email1@gmail.com',
+            title: 'free viagra',
+            description: 'well, it is not really free',
+            isRead: false,
+            sentAt: new Date()
+        }),
+        Ember.Object.create({
+            from: 'email2@gmail.com',
+            title: 'title 2',
+            description: 'description 2',
+            isRead: true,
+            sentAt: new Date()
+        }),
+        Ember.Object.create({
+            from: 'email4@gmail.com',
+            title: 'title 3',
+            description: 'description 3',
+            isRead: true,
+            sentAt: new Date()
+        })
+    ]);
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+
+    <header>
+        <h2>hello {{App.user.name}}! </h2>
+
+        <span class="emails">
+            {{App.user.emails.length}} emails ({{App.user.unreadCount}} unread)
+        </span>
+    </header>
+
+    <div class="inbox">
+        {{#if App.user.noEmails}}
+            sorry, no emails
+        {{else}}
+            <ul class="emails">
+                {{#each App.user.emails}}
+                    <li class="email-summary">
+                    <span class="title">
+                        {{this.title}}
+                    </span>
+                    <span class="date">
+                        {{this.sentAt}}
+                    </span>
+                        <div class="from">
+                            {{this.from}}
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
+
+</script>
+
+<!-- in console
+App.user.emails.pushObject({isRead: false})
+App.user.emails[0].set('isRead', true)
+
+-->

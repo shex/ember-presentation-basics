@@ -1,0 +1,12 @@
+<script type="text/javascript">
+    App = Ember.Application.create();
+    App.set('user', Ember.Object.create({
+        firstName: 'moshe'
+    }));
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+    <h2>hello {{App.user.firstName}}! </h2>
+</script>
+

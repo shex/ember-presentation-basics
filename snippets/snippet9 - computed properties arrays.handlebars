@@ -1,0 +1,76 @@
+<script type="text/javascript">
+    App = Ember.Application.create();
+
+    var User = Ember.Object.extend({
+        name: function () {
+            return this.get('firstName') + ' ' + this.get('lastName');
+        }.property('firstName', 'lastName'),
+        emails: [],
+
+        noEmails: function () {
+            return this.get('emails.length') === 0;
+        }.property('emails.@each')
+    });
+
+    var newUser = User.create({
+        firstName: 'Moran',
+        lastName: 'Fine'
+    });
+    App.set('user', newUser);
+
+    newUser.set('emails', [
+        {
+            from: 'email1@gmail.com',
+            title: 'free viagra',
+            description: 'well, it is not really free',
+            sentAt: new Date()
+        },
+        {
+            from: 'email2@gmail.com',
+            title: 'title 2',
+            description: 'description 2',
+            sentAt: new Date()
+        },
+        {
+            from: 'email4@gmail.com',
+            title: 'title 3',
+            description: 'description 3',
+            sentAt: new Date()
+        }
+    ]);
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+
+    <header>
+        <h2>hello {{App.user.name}}! </h2>
+
+        <span class="emails">
+            {{App.user.emails.length}} emails
+        </span>
+    </header>
+
+    <div class="inbox">
+        {{#if App.user.noEmails}}
+            sorry, no emails
+        {{else}}
+            <ul class="emails">
+                {{#each App.user.emails}}
+                    <li class="email-summary">
+                    <span class="title">
+                        {{this.title}}
+                    </span>
+                    <span class="date">
+                        {{this.sentAt}}
+                    </span>
+                        <div class="from">
+                            {{this.from}}
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
+
+</script>

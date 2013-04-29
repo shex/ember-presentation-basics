@@ -1,4 +1,68 @@
 /* Put your CSS here */
 html, body {
     margin: 20px;
+    color: #555;
+}
+
+header {
+    border: 1px solid #d4d4d4;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    background-repeat: repeat-x;
+    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+    padding: 13px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    min-height: 20px;
+}
+
+header > span {
+    color: #777777;
+    text-shadow: 0 1px 0 #ffffff;
+    float: left;
+}
+
+.emails-count {
+    margin-left: 15px;
+    color: #999;
+}
+
+.user {
+    float: right;
+}
+
+ul {
+    padding: 0;
+}
+
+.emails {
+    border: 1px solid rgba(200,200,200,0.4);
+    margin-bottom: 30px;
+}
+
+.email-summary {
+    display: block;
+    width: 200px;
+    padding: 5px;
+    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+    border: 1px solid rgba(200,200,200,0.4);
+    cursor: pointer;
+}
+
+.highlight {
+    background: #7AB;
+}
+
+.previewed-email {
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.preview-caption {
+    text-decoration: underline;
+    padding: 2px;
+}
+
+.from {
+    margin-top: 3px;
 }

@@ -1,0 +1,71 @@
+<script type="text/javascript">
+    App = Ember.Application.create();
+    App.set('user', Ember.Object.create({
+        firstName: 'moshe'
+    }));
+
+    // some pre written emails data
+    App.set('emails', [
+        {
+            from: 'email1@gmail.com',
+            title: 'free viagra',
+            description: 'well, it is not really free',
+            sentAt: new Date()
+        },
+        {
+            from: 'email2@gmail.com',
+            title: 'title 2',
+            description: 'description 2',
+            sentAt: new Date()
+        },
+        {
+            from: 'email4@gmail.com',
+            title: 'title 3',
+            description: 'description 3',
+            sentAt: new Date()
+        }
+    ]);
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+    <header>
+        <h2>hello {{App.user.firstName}}! </h2>
+
+        <span class="emails">
+            {{App.emails.length}} emails
+        </span>
+    </header>
+
+    <ul class="emails">
+        {{#each App.emails}}
+            <li class="email-summary">
+                <span class="title">
+                    {{this.title}}
+                </span>
+                <span class="sentAt">
+                    {{date this.sentAt}}
+                </span>
+                <div class="from">
+                    {{this.from}}
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+
+    <!--
+        // remove in console
+        App.emails.removeAt(0)
+
+        // add in console
+        App.emails.pushObject({
+            from: 'best email eva',
+            title: 'free viagra',
+            description: 'well, it is not really free',
+            sentAt: new Date()
+        })
+
+    -->
+
+</script>
+
